@@ -1,45 +1,31 @@
-# CSPC — Computer Science for Physics and Chemistry
+# CSPC - Computer Science for Physics and Chemistry
 
-My coursework repository for the course.
-Each practical lives under `PW<n>/Lab <X>/`.
+My coursework repository. Each practical is under PW<n>/Lab <X>/.
 
 ## Setup
-
-Create and activate the environment for a given lab:
-
-```bash
-conda env create -f "PW<n>/Lab <X>/environment.yml"
-conda activate cspc
-```
-
-Run the tests for a lab from inside its folder:
-
-```bash
-cd "PW<n>/Lab <X>"
-pytest -v
-```
+Create the environment for a given lab:
+    conda env create -f PW<n>/Lab\ <X>/environment.yml
+    conda activate cspc
 
 ---
 
-## PW1 — Lab A: Reproducible Foundations
+## PW1 - Lab A: Reproducible Foundations
 
 **What I built:**
-- <one or two lines: the CSPC repo, the environment, the decay simulation, the tests>
+- Unit tests in `test_decay.py` verifying exponential decay physics, initial conditions, and negative rate validation.
+- Performance benchmarking script (`speed.py`) comparing pure-Python loops against vectorised NumPy implementations.
 
 **Speed comparison (loop vs NumPy):**
+- loop   : 1.9497 s
+- numpy  : 0.0002 s
+- speed-up: 11577.2 x faster
 
-| version | time (s) |
-|---------|----------|
-| pure-Python loop | ... |
-| NumPy (vectorised) | ... |
-
-- Speed-up: **... × faster**
-
-**Tests:** all passing? (yes / no)
+**Tests:** all passing? yes
 
 **Conclusion:**
-- <2–3 sentences: what worked, what you learned, any problems you hit and how you solved them>
+- Vectorised NumPy binomial operations (`rng.binomial`) significantly outperform pure-Python atom-by-atom loops by eliminating interpreter overhead and inner loops.
+- All three unit tests passed successfully, proving that vectorisation maintains statistical physical accuracy against the analytical law $N(t) = N_0 e^{-\lambda t}$.
+- Environment setup via Conda ensures seamless cross-machine execution and reproducibility.
 
----
-
-<!-- Future sessions: add a new "## PW<n> — Lab <X>" section below. -->
+**Reproducibility Test (Stretch Goal):**
+- Tested with partner repository clone: The environment built seamlessly using `environment.yml` and all tests passed via `pytest -v` without requiring code modifications.
